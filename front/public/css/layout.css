@@ -215,10 +215,11 @@ ul#nav li.current a { color: #C85179; }
 #about .download {
    width: 58.33333%;
    padding-top: 6px;
+   text-align: center;
 }
 #about .main-col { padding-right: 5%; }
 #about .download .button {
-   margin-top: 6px;
+   margin: 1rem auto;
    background: #444;
    color: #C85179;
 }
@@ -620,7 +621,6 @@ ul#nav li.current a { color: #C85179; }
 }
 #call-to-action h1 span { display: none; }
 #call-to-action .header-col h1:before {
-   font-family: 'FontAwesome';
    content: "\f0ac";
 	padding-right: 10px;
 	font-size: 72px;
@@ -688,7 +688,6 @@ call-to-action .button {
 #testimonials h1 span { display: none; }
 #testimonials .header-col { padding-top: 9px; }
 #testimonials .header-col h1:before {
-   font-family: 'FontAwesome';
    content: "\f10d";
 	padding-right: 10px;
 	font-size: 72px;
@@ -833,7 +832,6 @@ call-to-action .button {
 }
 #contact h1 span { display: none; }
 #contact h1:before {
-   font-family: 'FontAwesome';
    content: "\f0e0";
 	padding-right: 10px;
 	font-size: 72px;
@@ -972,6 +970,7 @@ footer .copyright li {
     margin: 0;
     padding: 0;
     line-height: 24px;
+    color: rgb(88, 88, 88);
 }
 .ie footer .copyright li {
    display: inline;
@@ -980,7 +979,7 @@ footer .copyright li:before {
     content: "\2022";
     padding-left: 10px;
     padding-right: 10px;
-    color: #095153;
+    color: #035255;
 }
 footer .copyright  li:first-child:before {
     display: none;
@@ -1028,4 +1027,4 @@ footer .social-links li:first-child { margin-left: 0; }
    line-height: 60px;
  	border-radius: 100%;
 }
-#go-top a:hover { background-color: #0F9095; }
+#go-top a:hover { background-color: #C85179; }
