@@ -1,34 +1,29 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react'
+import SocialContext from './context/Social'
 
-class Footer extends Component {
-  render() {
+function Footer() {
+  const [social] = useContext(SocialContext)
 
-    if (this.props.data) {
-      var networks = this.props.data.social.map(function (network) {
-        return <li key={network.name}><a href={network.url}><i className={network.className}></i></a></li>
-      })
-    }
+  return (
+    <footer>
 
-    return (
-      <footer>
+      <div className="row">
+        <div className="twelve columns">
+          <ul className="social-links">
+            {social.map(i => <li key={i.name}><a href={i.url}><i className={i.className}></i></a></li>)}
+          </ul>
+          <a href='src/CV-HailinSIM-dev.pdf' className="button"><i className="fa fa-download"></i> Download Resume</a>
 
-        <div className="row">
-          <div className="twelve columns">
-            <ul className="social-links">
-              {networks}
-            </ul>
+          <ul className="copyright">
+            <li>&copy; Copyright 2020 Lena Hailin SIM</li>
+            <li>Design by <a title="Styleshout" href="http://www.styleshout.com/">Styleshout</a></li>
+          </ul>
 
-            <ul className="copyright">
-              <li>&copy; Copyright 2020 Lena Hailin SIM</li>
-              <li>Design by <a title="Styleshout" href="http://www.styleshout.com/">Styleshout</a></li>
-            </ul>
-
-          </div>
-          <div id="go-top"><a className="smoothscroll" title="Back to Top" href="#home"><i className="icon-up-open"></i></a></div>
         </div>
-      </footer>
-    );
-  }
+        <div id="go-top"><a className="smoothscroll" title="Back to Top" href="#home"><i className="icon-up-open"></i></a></div>
+      </div>
+    </footer>
+  )
 }
 
-export default Footer;
+export default Footer
