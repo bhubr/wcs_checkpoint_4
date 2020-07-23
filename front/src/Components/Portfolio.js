@@ -11,17 +11,26 @@ function Portfolio() {
 
   const [project, setProject] = useState([])
   const [techno, setTechno] = useState([])
-
-  // const projectContext = React.createContext(project)
-  // const technoContext = React.createContext(techno)
+  const [criteria, setCriteria] = useState([])
 
   const openModal = (e) => {
-    console.log(e.target.id)
     toggleModal(true)
     setModalId(e.target.id)
   }
 
+  const filterByCriteria = (e) => {
+    setProject([])
+    const id = e.target.name
+    const url = `http://localhost:8080/criteria/${id}`
+    axios
+      .get(url)
+      .then(res => res.data)
+      .then(data => setProject(data))
+      .then(console.log(project))
+  }
+
   const getPortfolio = () => {
+    setProject([])
     const url = 'http://localhost:8080/project'
     axios
       .get(url)
@@ -37,17 +46,31 @@ function Portfolio() {
       .then(data => setTechno(data))
   }
 
+  const getCriteria = () => {
+    const url = 'http://localhost:8080/criteria'
+    axios
+      .get(url)
+      .then(res => res.data)
+      .then(data => setCriteria(data))
+  }
+
   useEffect(() => {
     getPortfolio()
     getTechno()
+    getCriteria()
   }, [])
 
   return (
     <>
       <section id="portfolio">
+        <div className='filter_buttons'>
+          <button className='filter_button' onClick={getPortfolio}>See All</button>
+          {criteria.map((c, i) =>
+            <button key={c.id.toString()} name={c.id} className='filter_button' onClick={e => filterByCriteria(e)}>{c.criteria}</button>
+          )}
+        </div>
         <div className="row">
           <div className="twelve columns collapsed">
-            <h1>Check Out Some of My Works.</h1>
             <div id="portfolio-wrapper" className="project">
               {project.map(p =>
                 <Project key={p.id} project={p} techno={techno} openModal={openModal} />

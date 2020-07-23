@@ -27,7 +27,7 @@ function Modal(props) {
           <div className="tags">
             <ul>
               {props.techno.map(t =>
-                <li>{t.techno}</li>
+                <li key={t.id}>{t.techno}</li>
               )}
             </ul>
           </div>

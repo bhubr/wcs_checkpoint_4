@@ -523,6 +523,11 @@ input::-moz-focus-inner {
     padding: 0;
 }
 
+.filter_button {
+  margin: 1rem;
+  background: #f7f7f7;
+  color: #3d4145;
+}
 
 /*  7. Forms  --------------------------------------------------------- */
 

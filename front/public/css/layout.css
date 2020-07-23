@@ -341,6 +341,14 @@ ul#nav li.current a { color: #C85179; }
    margin-bottom: 0;
 }
 
+.filter_buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 3rem;
+}
+
 /* on hover */
 .portfolio-item:hover .overlay {
 	opacity: 1;
