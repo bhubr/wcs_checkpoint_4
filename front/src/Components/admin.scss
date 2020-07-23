@@ -1,0 +1,80 @@
+.admin {
+  display: flex;
+  justify-content: center;
+}
+
+.admin > button {
+  margin-top: 10rem;
+}
+
+.modal_admin {
+  z-index: 105;
+  border-radius: 10px;
+  position: fixed;
+  background: white;
+  height: auto;
+  width: 70%;
+  min-width: 35rem;
+  max-width: 70rem;
+  top: 50%;
+  left: 50%;
+  margin: 20px;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+}
+
+.modal_admin_title {
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  h1 {
+    font-size: 3rem;
+    color: #c85179;
+  }
+}
+
+.input {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 0 3%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.form-field {
+  height: 4rem;
+  width: 30rem;
+  padding: 0 1rem;
+  margin: 0 1rem 1rem 1rem !important;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  outline: 0;
+  transition: 0.2s;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.form-field:focus {
+  border-color: #0f7ef1;
+  background-color: white;
+}
+
+.animation {
+  animation-name: move;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+textarea {
+  height: 7rem !important;
+  min-height: 7rem !important;
+  font: 400 1.3rem monospace !important;
+  padding: 1rem !important;
+}
