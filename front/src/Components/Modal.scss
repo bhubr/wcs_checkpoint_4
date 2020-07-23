@@ -1,0 +1,132 @@
+.modal {
+  z-index: 105;
+  border-radius: 10px;
+  position: fixed;
+  background: white;
+  height: auto;
+  width: 50%;
+  min-width: 35rem;
+  max-width: 70rem;
+  top: 50%;
+  left: 50%;
+  margin: 20px;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+}
+
+.modal_title {
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  h1 {
+    font-size: 3rem;
+    color: #C85179;
+  }
+}
+
+.modal_img {
+  padding: 0 3rem;
+  text-align: center;
+  img {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+.modal_body {
+  margin: 0 7%;
+}
+
+.modal_info {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+
+  span {
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+}
+
+.container_tags {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.tags {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      font-size: 12px;
+      letter-spacing: 2px;
+      list-style: none;
+      margin-left: 8px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+
+      &:first-child {
+        margin-left: 0px;
+      }
+
+      &:before {
+        content: "";
+        text-align: center;
+        width: 100%;
+        height: 5px;
+        background: #fc6042;
+        opacity: 0.5;
+        position: absolute;
+        bottom: 0;
+        z-index: -1;
+        padding: 0px 1px;
+        -webkit-transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+        -moz-transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+        -ms-transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+        -o-transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+        transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+      }
+
+      &:hover:before {
+        height: 18px;
+      }
+    }
+  }
+}
+
+.modal_button {
+  margin: 0 3rem;
+  a i {
+    margin-left: 1rem;
+  }
+}
+
+.ModalBack {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  
+}
