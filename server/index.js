@@ -11,7 +11,6 @@ app.use(cors())
 app.use('/project', routes.project)
 app.use('/techno', routes.techno)
 app.use('/criteria', routes.criteria)
-app.use('/admin', routes.admin)
 
 app.get('/', (req, res) => {
   res.send({ message: 'YESS successfully connected!' })
