@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     `SELECT * FROM criteria`,
     (err, results) => {
       if (err) {
-        res.status(500).json({ error: err.sqlMessage })
+        res.status(500).json({ error: err.message })
       } else {
         res.status(201).json(results)
       }
@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
     criteria,
     (err, results) => {
       if (err) {
-        res.status(500).json({ error: err.sqlMessage })
+        res.status(500).json({ error: err.message })
       } else {
         res.status(201).json(results)
       }

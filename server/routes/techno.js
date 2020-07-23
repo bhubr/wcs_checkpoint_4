@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     JOIN techno ON project_techno.techno_id = techno.id`,
     (err, results) => {
       if (err) {
-        res.status(500).json({ error: err.sqlMessage })
+        res.status(500).json({ error: err.message })
       } else {
         res.status(201).json(results)
       }

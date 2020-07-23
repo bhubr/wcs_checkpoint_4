@@ -23,7 +23,7 @@ function ModalAdmin(props) {
     e.preventDefault()
     const url = 'http://localhost:8080/project'
     axios.post(url, newProject)
-    .then(() => props.toggleModal(false) )
+      .then(() => props.toggleModal(false))
   }
 
   return (
@@ -60,7 +60,6 @@ function ModalAdmin(props) {
           <button type="submit">Submit</button>
         </div>
       </form>
-      {/* <button onClick={() => props.toggleModal(false)} className='modal_admin_button'>confirm</button> */}
     </div>
   )
 }
