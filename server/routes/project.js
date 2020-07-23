@@ -2,22 +2,7 @@ const express = require('express')
 const router = express.Router()
 const connection = require('../connection')
 
-// JOIN project_techno ON project.id = project_techno.project_id 
-// JOIN techno ON project_techno.techno_id = techno.id
-// JOIN project_criteria ON project.id = project_criteria.project_id 
-// JOIN criteria ON project_criteria.criteria_id = criteria.id
-
-
-//get all projects & search by query
 router.get('/', (req, res) => {
-  const criteria = req.query.criteria
-  // if (req.query.criteria) {
-  //   const sql = `SELECT * FROM project 
-  //   JOIN project_criteria ON project.id = project_criteria.project_id 
-  //   JOIN criteria ON project_criteria.criteria_id = criteria.id 
-  //   WHERE criteria.name = ?`
-  // } 
-
   connection.query(
     `SELECT * FROM project JOIN img ON project.id = img.project_id
     ORDER BY project.id DESC`, 
