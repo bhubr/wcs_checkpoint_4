@@ -82,8 +82,8 @@ function Portfolio() {
       {showModal && (
         <>
           <Modal
-            project={project.filter(p => p.project_id == modalId)}
-            techno={techno.filter(t => t.project_id == modalId)}
+            project={project.filter(p => p.project_id === parseInt(modalId))}
+            techno={techno.filter(t => t.project_id === parseInt(modalId))}
             toggleModal={toggleModal}
           />
           <ModalBack toggleModal={toggleModal} />
