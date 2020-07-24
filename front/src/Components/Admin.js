@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import ModalAdmin from './ModalAdmin'
 import ModalBack from './ModalBack'
 import './admin.scss'

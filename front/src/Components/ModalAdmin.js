@@ -12,6 +12,7 @@ function ModalAdmin(props) {
     'company_name': ''
   }
   const [newProject, setNewProject] = useState(initValue)
+  const [newImg, setNewImg] = useState('')
 
   const handleInputChange = (e) => {
     setNewProject({
@@ -19,10 +20,16 @@ function ModalAdmin(props) {
     })
   }
 
+  const handleImgChange = (e) => {
+    setNewImg(e.target.value)
+  }
+
   const addNewProject = (e) => {
     e.preventDefault()
-    const url = 'http://localhost:8080/project'
-    axios.post(url, newProject)
+    // const url = 'http://localhost:8080/project/'
+    const urlImg = `http://localhost:8080/project?src=${newImg}`
+    console.log(urlImg)
+    axios.post(urlImg, newProject)
       .then(() => props.toggleModal(false))
   }
 
@@ -46,15 +53,19 @@ function ModalAdmin(props) {
         </div>
         <div className='input'>
           <label>Site link</label>
-          <input name='site_link' className='form-field animation' onChange={handleInputChange} required></input>
+          <input name='site_link' className='form-field animation' onChange={handleInputChange}></input>
         </div>
         <div className='input'>
           <label>Github link</label>
-          <input name='github_link' className='form-field animation' onChange={handleInputChange} required></input>
+          <input name='github_link' className='form-field animation' onChange={handleInputChange}></input>
+        </div>
+        <div className='input'>
+          <label>Image src</label>
+          <input name='src' placeholder='File name in /public/images' className='form-field animation' onChange={handleImgChange} required></input>
         </div>
         <div className='input'>
           <label>Company Name</label>
-          <input name='company_name' className='form-field animation' onChange={handleInputChange} required></input>
+          <input name='company_name' className='form-field animation' onChange={handleInputChange}></input>
         </div>
         <div className='center'>
           <button type="submit">Submit</button>
