@@ -26,7 +26,6 @@ function Portfolio() {
       .get(url)
       .then(res => res.data)
       .then(data => setProject(data))
-      .then(console.log(project))
   }
 
   const getPortfolio = () => {

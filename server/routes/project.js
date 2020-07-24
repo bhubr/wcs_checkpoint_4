@@ -42,13 +42,11 @@ router.post('/', (req, res) => {
         res.status(500).json({ error: err.message })
       } else {
         const formData2 = { src: imgSrc, project_id: results.insertId }
-        console.log(results)
         connection.query(
           'INSERT INTO img SET ?',
           formData2,
           (err, results) => {
             if (err) {
-              console.log(err.sqlMessage)
               res.status(500).json({ error: err.message })
             } else {
               res.status(201).json(results)
