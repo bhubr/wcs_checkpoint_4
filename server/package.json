@@ -22,6 +22,7 @@
     "prettier": "^2.0.5"
   },
   "scripts": {
+    "lint": "eslint --fix config/ routes/ *.js",
     "start": "node_modules/.bin/nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
