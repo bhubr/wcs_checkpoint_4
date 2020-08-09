@@ -43,7 +43,7 @@ function Header() {
           <h1 className="responsive-headline">Lena Hailin SIM</h1>
           <h3>
             {' '}
-            I'm <span>Web Developer</span> <br /> React · Node JS · MySQL
+            I&apos;m <span>Web Developer</span> <br /> React · Node JS · MySQL
           </h3>
           <hr />
           <ul className="social">

@@ -15,8 +15,8 @@ function About() {
           <h2>About Me</h2>
 
           <p>
-            I'm a junior developer based in Paris. I specialise in React, Node
-            JS, SQL as well as UX/UI design. <br />
+            I&apos;m a junior developer based in Paris. I specialise in React,
+            Node JS, SQL as well as UX/UI design. <br />
           </p>
         </div>
 
