@@ -3,15 +3,13 @@ const router = express.Router()
 const connection = require('../connection')
 
 router.get('/', (req, res) => {
-  connection.query(
-    `SELECT * FROM criteria`,
-    (err, results) => {
-      if (err) {
-        res.status(500).json({ error: err.message })
-      } else {
-        res.status(201).json(results)
-      }
-    })
+  connection.query(`SELECT * FROM criteria`, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message })
+    } else {
+      res.status(201).json(results)
+    }
+  })
 })
 
 router.get('/:id', (req, res) => {
@@ -29,7 +27,8 @@ router.get('/:id', (req, res) => {
       } else {
         res.status(201).json(results)
       }
-    })
+    }
+  )
 })
 
 module.exports = router

@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
       } else {
         res.status(201).json(results)
       }
-    })
+    }
+  )
 })
 
 module.exports = router
