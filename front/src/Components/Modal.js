@@ -1,8 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import projectPropTypes from '../PropTypes/project'
 import './Modal.scss'
 
 function Modal(props) {
-  const [project] = props.project
+  const { project } = props
   const url = `images/${project.src}`
   const date = project.create_date.slice(0, 7)
 
@@ -50,6 +52,16 @@ function Modal(props) {
         {/* <button onClick={() => props.toggleModal(false)} className='modal_button'>confirm</button> */}
       </div>
     </div>
+  )
+}
+
+Modal.propTypes = {
+  project: projectPropTypes,
+  techno: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      techno: PropTypes.string
+    })
   )
 }
 

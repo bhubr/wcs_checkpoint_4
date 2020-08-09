@@ -1,6 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import projectPropTypes from '../PropTypes/project'
 
-function Project({ project, techno, openModal }) {
+function Project({ project, openModal }) {
   const url = `images/${project.src}`
   return (
     <div
@@ -31,6 +33,11 @@ function Project({ project, techno, openModal }) {
       </div>
     </div>
   )
+}
+
+Project.propTypes = {
+  project: projectPropTypes,
+  openModal: PropTypes.func
 }
 
 export default Project

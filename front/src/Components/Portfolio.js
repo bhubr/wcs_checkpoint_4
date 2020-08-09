@@ -95,7 +95,7 @@ function Portfolio() {
       {showModal && (
         <>
           <Modal
-            project={project.filter((p) => p.project_id === parseInt(modalId))}
+            project={project.find((p) => p.project_id === parseInt(modalId))}
             techno={techno.filter((t) => t.project_id === parseInt(modalId))}
             toggleModal={toggleModal}
           />
