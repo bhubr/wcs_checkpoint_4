@@ -24,8 +24,8 @@ function Portfolio() {
     const url = `http://localhost:8080/criteria/${id}`
     axios
       .get(url)
-      .then(res => res.data)
-      .then(data => setProject(data))
+      .then((res) => res.data)
+      .then((data) => setProject(data))
   }
 
   const getPortfolio = () => {
@@ -33,24 +33,24 @@ function Portfolio() {
     const url = 'http://localhost:8080/project'
     axios
       .get(url)
-      .then(res => res.data)
-      .then(data => setProject(data))
+      .then((res) => res.data)
+      .then((data) => setProject(data))
   }
 
   const getTechno = () => {
     const url = 'http://localhost:8080/techno'
     axios
       .get(url)
-      .then(res => res.data)
-      .then(data => setTechno(data))
+      .then((res) => res.data)
+      .then((data) => setTechno(data))
   }
 
   const getCriteria = () => {
     const url = 'http://localhost:8080/criteria'
     axios
       .get(url)
-      .then(res => res.data)
-      .then(data => setCriteria(data))
+      .then((res) => res.data)
+      .then((data) => setCriteria(data))
   }
 
   useEffect(() => {
@@ -62,18 +62,32 @@ function Portfolio() {
   return (
     <>
       <section id="portfolio">
-        <div className='filter_buttons'>
-          <button className='filter_button' onClick={getPortfolio}>See All</button>
-          {criteria.map((c, i) =>
-            <button key={c.id.toString()} name={c.id} className='filter_button' onClick={e => filterByCriteria(e)}>{c.criteria}</button>
-          )}
+        <div className="filter_buttons">
+          <button className="filter_button" onClick={getPortfolio}>
+            See All
+          </button>
+          {criteria.map((c, i) => (
+            <button
+              key={c.id.toString()}
+              name={c.id}
+              className="filter_button"
+              onClick={(e) => filterByCriteria(e)}
+            >
+              {c.criteria}
+            </button>
+          ))}
         </div>
         <div className="row">
           <div className="twelve columns collapsed">
             <div id="portfolio-wrapper" className="project">
-              {project.map(p =>
-                <Project key={p.id} project={p} techno={techno} openModal={openModal} />
-              )}
+              {project.map((p) => (
+                <Project
+                  key={p.id}
+                  project={p}
+                  techno={techno}
+                  openModal={openModal}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -81,8 +95,8 @@ function Portfolio() {
       {showModal && (
         <>
           <Modal
-            project={project.filter(p => p.project_id === parseInt(modalId))}
-            techno={techno.filter(t => t.project_id === parseInt(modalId))}
+            project={project.filter((p) => p.project_id === parseInt(modalId))}
+            techno={techno.filter((t) => t.project_id === parseInt(modalId))}
             toggleModal={toggleModal}
           />
           <ModalBack toggleModal={toggleModal} />
