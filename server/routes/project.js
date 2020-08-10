@@ -32,20 +32,29 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const { src: imgSrc, criteriaIds, ...formData } = req.body
-  connection.query('INSERT INTO project SET ?', formData, (err, results) => {
-    if (err) {
+  let projectId
+  connection
+    .queryAsync('INSERT INTO project SET ?', formData)
+    .then((results) => {
+      projectId = results.insertId
+      const formData2 = { src: imgSrc, project_id: projectId }
+      return connection.queryAsync('INSERT INTO img SET ?', formData2)
+    })
+    .then(() => {
+      const sqlProjectCriteria =
+        'INSERT INTO project_criteria (project_id,criteria_id)VALUES ?'
+      const projectCriteriaValues = criteriaIds.map((criteriaId) => [
+        projectId,
+        criteriaId
+      ])
+      return connection.queryAsync(sqlProjectCriteria, [projectCriteriaValues])
+    })
+    .then((results) => {
+      res.status(201).json(results)
+    })
+    .catch((err) => {
       res.status(500).json({ error: err.message })
-    } else {
-      const formData2 = { src: imgSrc, project_id: results.insertId }
-      connection.query('INSERT INTO img SET ?', formData2, (err, results) => {
-        if (err) {
-          res.status(500).json({ error: err.message })
-        } else {
-          res.status(201).json(results)
-        }
-      })
-    }
-  })
+    })
 })
 
 module.exports = router

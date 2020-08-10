@@ -1,6 +1,9 @@
 const mysql = require('mysql')
+const { promisify } = require('util')
 const { db } = require('./config')
 
-const connection = mysql.createConnection(db)
+const pool = mysql.createPool(db)
 
-module.exports = connection
+pool.queryAsync = promisify(pool.query.bind(pool))
+
+module.exports = pool
