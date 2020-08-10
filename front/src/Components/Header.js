@@ -1,9 +1,7 @@
-import React, { useContext } from 'react'
-import SocialContext from './context/Social'
+import React from 'react'
+import social from '../Data/social'
 
 function Header() {
-  const [social] = useContext(SocialContext)
-
   return (
     <header id="home">
       <nav id="nav-wrap">

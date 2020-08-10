@@ -1,5 +1,3 @@
-import React from 'react'
-
 const social = [
   {
     name: 'facebook',
@@ -28,6 +26,4 @@ const social = [
   }
 ]
 
-const SocialContext = React.createContext([social])
-
-export default SocialContext
+export default social

@@ -1,9 +1,7 @@
-import React, { useContext } from 'react'
-import SocialContext from './context/Social'
+import React from 'react'
+import social from '../Data/social'
 
 function Footer() {
-  const [social] = useContext(SocialContext)
-
   return (
     <footer>
       <div className="row">
