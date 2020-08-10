@@ -30,31 +30,34 @@ router.get('/', (req, res) => {
   )
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { src: imgSrc, criteriaIds, ...formData } = req.body
-  let projectId
-  connection
-    .queryAsync('INSERT INTO project SET ?', formData)
-    .then((results) => {
-      projectId = results.insertId
-      const formData2 = { src: imgSrc, project_id: projectId }
-      return connection.queryAsync('INSERT INTO img SET ?', formData2)
-    })
-    .then(() => {
-      const sqlProjectCriteria =
-        'INSERT INTO project_criteria (project_id,criteria_id)VALUES ?'
-      const projectCriteriaValues = criteriaIds.map((criteriaId) => [
-        projectId,
-        criteriaId
-      ])
-      return connection.queryAsync(sqlProjectCriteria, [projectCriteriaValues])
-    })
-    .then((results) => {
-      res.status(201).json(results)
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message })
-    })
+
+  try {
+    // 1. insert project
+    const results = await connection.queryAsync(
+      'INSERT INTO project SET ?',
+      formData
+    )
+
+    // 2. get inserted project id and insert img
+    const projectId = results.insertId
+    const formData2 = { src: imgSrc, project_id: projectId }
+    await connection.queryAsync('INSERT INTO img SET ?', formData2)
+
+    // 3. insert associations between project and criteria
+    // https://stackoverflow.com/q/8899802/
+    const sqlProjectCriteria =
+      'INSERT INTO project_criteria (project_id,criteria_id)VALUES ?'
+    const projectCriteriaValues = criteriaIds.map((criteriaId) => [
+      projectId,
+      criteriaId
+    ])
+    await connection.queryAsync(sqlProjectCriteria, [projectCriteriaValues])
+    res.status(201).json(results)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
 })
 
 module.exports = router
