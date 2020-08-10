@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import social from '../Data/social'
 
 function Header() {
@@ -14,9 +15,9 @@ function Header() {
 
         <ul id="nav" className="nav">
           <li>
-            <a className="smoothscroll" href="/">
+            <Link className="smoothscroll" to="/">
               Home
-            </a>
+            </Link>
           </li>
           <li>
             <a className="smoothscroll" href="#about">
@@ -29,9 +30,9 @@ function Header() {
             </a>
           </li>
           <li>
-            <a className="smoothscroll" href="/admin">
+            <Link className="smoothscroll" to="/admin">
               Admin
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

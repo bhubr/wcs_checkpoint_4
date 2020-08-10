@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import ModalAdmin from './ModalAdmin'
 import ModalBack from './ModalBack'
 import './admin.scss'
@@ -20,19 +21,19 @@ function Admin() {
         </a>
         <ul id="nav" className="nav">
           <li>
-            <a className="smoothscroll" href="/">
+            <Link className="smoothscroll" to="/">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="smoothscroll" href="/#about">
+            <Link className="smoothscroll" to="/#about">
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="smoothscroll" href="/#portfolio">
+            <Link className="smoothscroll" to="/#portfolio">
               Projects
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
