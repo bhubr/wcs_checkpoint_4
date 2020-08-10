@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+import Select from 'react-select-me'
+
+import 'react-select-me/lib/ReactSelectMe.css'
 import './admin.scss'
 
 function ModalAdmin(props) {
@@ -15,6 +18,7 @@ function ModalAdmin(props) {
   const [newProject, setNewProject] = useState(initValue)
   const [newImg, setNewImg] = useState('')
   const [allCriteria, setAllCriteria] = useState([])
+  const [selectedCriteria, setSelectedCriteria] = useState([])
 
   const handleInputChange = (e) => {
     setNewProject({
@@ -27,12 +31,17 @@ function ModalAdmin(props) {
     setNewImg(e.target.value)
   }
 
+  const handleCriteriaChange = (values) => {
+    setSelectedCriteria(values)
+  }
+
   const addNewProject = (e) => {
     e.preventDefault()
     const urlProject = '/project'
     const payload = {
       ...newProject,
-      src: newImg
+      src: newImg,
+      criteriaIds: selectedCriteria.map(({ value }) => value)
     }
     axios.post(urlProject, payload).then(() => props.toggleModal(false))
   }
@@ -41,7 +50,12 @@ function ModalAdmin(props) {
     const url = '/criteria'
     axios
       .get(url)
-      .then((res) => res.data)
+      .then((res) =>
+        res.data.map(({ id, criteria }) => ({
+          value: id,
+          label: criteria
+        }))
+      )
       .then((data) => setAllCriteria(data))
   }
 
@@ -63,7 +77,7 @@ function ModalAdmin(props) {
               className="form-field animation"
               onChange={handleInputChange}
               required
-            ></input>
+            />
           </div>
           <div className="input">
             <label>Project description</label>
@@ -82,7 +96,7 @@ function ModalAdmin(props) {
               className="form-field animation"
               onChange={handleInputChange}
               required
-            ></input>
+            />
           </div>
           <div className="input">
             <label>Site link</label>
@@ -90,7 +104,7 @@ function ModalAdmin(props) {
               name="site_link"
               className="form-field animation"
               onChange={handleInputChange}
-            ></input>
+            />
           </div>
           <div className="input">
             <label>Github link</label>
@@ -98,7 +112,7 @@ function ModalAdmin(props) {
               name="github_link"
               className="form-field animation"
               onChange={handleInputChange}
-            ></input>
+            />
           </div>
           <div className="input">
             <label>Image src</label>
@@ -108,7 +122,7 @@ function ModalAdmin(props) {
               className="form-field animation"
               onChange={handleImgChange}
               required
-            ></input>
+            />
           </div>
           <div className="input">
             <label>Company Name</label>
@@ -116,7 +130,16 @@ function ModalAdmin(props) {
               name="company_name"
               className="form-field animation"
               onChange={handleInputChange}
-            ></input>
+            />
+          </div>
+          <div className="input">
+            <label>Criteria</label>
+            <Select
+              options={allCriteria}
+              value={selectedCriteria}
+              onChange={handleCriteriaChange}
+              multiple
+            />
           </div>
           <div className="center">
             <button type="submit">Submit</button>

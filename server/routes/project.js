@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const { src: imgSrc, ...formData } = req.body
+  const { src: imgSrc, criteriaIds, ...formData } = req.body
   connection.query('INSERT INTO project SET ?', formData, (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message })
