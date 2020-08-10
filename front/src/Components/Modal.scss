@@ -37,6 +37,11 @@
   margin: 0 7%;
 }
 
+.modal_scroll {
+  max-height: 84vh;
+  overflow-y: scroll;
+}
+
 .modal_info {
   display: flex;
   flex-direction: column;
@@ -128,5 +133,5 @@ span {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.7);
 
-  
+
 }
