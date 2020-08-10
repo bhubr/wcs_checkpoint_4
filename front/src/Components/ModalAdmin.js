@@ -28,7 +28,7 @@ function ModalAdmin(props) {
 
   const addNewProject = (e) => {
     e.preventDefault()
-    const urlImg = `http://localhost:8080/project?src=${newImg}`
+    const urlImg = `/project?src=${newImg}`
     axios.post(urlImg, newProject).then(() => props.toggleModal(false))
   }
 

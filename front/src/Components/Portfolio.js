@@ -24,7 +24,7 @@ function Portfolio() {
   }
 
   const getPortfolio = () => {
-    const url = 'http://localhost:8080/project'
+    const url = '/project'
     axios
       .get(url)
       .then((res) => res.data)
@@ -32,7 +32,7 @@ function Portfolio() {
   }
 
   const getTechno = () => {
-    const url = 'http://localhost:8080/techno'
+    const url = '/techno'
     axios
       .get(url)
       .then((res) => res.data)
@@ -40,7 +40,7 @@ function Portfolio() {
   }
 
   const getCriteria = () => {
-    const url = 'http://localhost:8080/criteria'
+    const url = '/criteria'
     axios
       .get(url)
       .then((res) => res.data)
