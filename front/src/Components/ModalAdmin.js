@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import './admin.scss'
@@ -44,6 +44,10 @@ function ModalAdmin(props) {
       .then((res) => res.data)
       .then((data) => setAllCriteria(data))
   }
+
+  useEffect(() => {
+    getCriteria()
+  }, [])
 
   return (
     <div className="modal_admin">
