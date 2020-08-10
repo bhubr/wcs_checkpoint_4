@@ -6,30 +6,24 @@ import ModalBack from './ModalBack'
 import './Project.scss'
 
 function Portfolio() {
-  const [showModal, toggleModal] = useState(false)
-  const [modalId, setModalId] = useState()
+  const [modalId, setModalId] = useState(null)
 
   const [project, setProject] = useState([])
   const [techno, setTechno] = useState([])
   const [criteria, setCriteria] = useState([])
+  const [filterCriteriaId, setFilterCriteriaId] = useState(null)
 
   const openModal = (e) => {
-    toggleModal(true)
-    setModalId(e.target.id)
+    const projectId = Number(e.target.id)
+    setModalId(projectId)
   }
 
   const filterByCriteria = (e) => {
-    setProject([])
-    const id = e.target.name
-    const url = `http://localhost:8080/criteria/${id}`
-    axios
-      .get(url)
-      .then((res) => res.data)
-      .then((data) => setProject(data))
+    const criteriaId = Number(e.target.name)
+    setFilterCriteriaId(criteriaId)
   }
 
   const getPortfolio = () => {
-    setProject([])
     const url = 'http://localhost:8080/project'
     axios
       .get(url)
@@ -53,6 +47,12 @@ function Portfolio() {
       .then((data) => setCriteria(data))
   }
 
+  const getFilteredProjects = () => {
+    return filterCriteriaId === null
+      ? project
+      : project.filter((proj) => proj.criteria_ids.includes(filterCriteriaId))
+  }
+
   useEffect(() => {
     getPortfolio()
     getTechno()
@@ -71,7 +71,7 @@ function Portfolio() {
               key={c.id.toString()}
               name={c.id}
               className="filter_button"
-              onClick={(e) => filterByCriteria(e)}
+              onClick={filterByCriteria}
             >
               {c.criteria}
             </button>
@@ -80,7 +80,7 @@ function Portfolio() {
         <div className="row">
           <div className="twelve columns collapsed">
             <div id="portfolio-wrapper" className="project">
-              {project.map((p) => (
+              {getFilteredProjects().map((p) => (
                 <Project
                   key={p.id}
                   project={p}
@@ -92,14 +92,14 @@ function Portfolio() {
           </div>
         </div>
       </section>
-      {showModal && (
+      {modalId && (
         <>
           <Modal
-            project={project.find((p) => p.project_id === parseInt(modalId))}
-            techno={techno.filter((t) => t.project_id === parseInt(modalId))}
-            toggleModal={toggleModal}
+            project={project.find((p) => p.project_id === modalId)}
+            techno={techno.filter((t) => t.project_id === modalId)}
+            toggleModal={() => setModalId(null)}
           />
-          <ModalBack toggleModal={toggleModal} />
+          <ModalBack toggleModal={() => setModalId(null)} />
         </>
       )}
     </>

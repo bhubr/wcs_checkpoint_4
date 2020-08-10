@@ -4,28 +4,27 @@ const connection = require('../connection')
 
 router.get('/', (req, res) => {
   connection.query(
-    `SELECT * FROM project JOIN img ON project.id = img.project_id
+    `SELECT
+      project.*,
+      img.project_id, ANY_VALUE(img.src) AS src,
+      GROUP_CONCAT(criteria.id) AS criteria_ids
+    FROM project
+    JOIN img ON project.id = img.project_id
+    JOIN project_criteria ON project.id = project_criteria.project_id
+    JOIN criteria ON project_criteria.criteria_id = criteria.id
+    GROUP BY project.id
     ORDER BY project.id DESC`,
     (err, results) => {
       if (err) {
         res.status(500).json({ error: err.message })
       } else {
-        // const res2 = results.map(p => {
-        // let toto = Object.assign({ technos: null }, p)
-        // connection.query(
-        //   `SELECT * FROM project_techno where project_id = ${p.id}`,
-        //   (err2, results2) => {
-        //     if (err2) {
-        //       res.status(500).json({ error: err2.sqlMessage })
-        //     } else {
-        //       toto.technos = results2
-        //       console.log(results2)
-        //       return toto
-        //     }
-        //   })
-        // return toto
-        // })
-        res.status(201).json(results)
+        const projects = results.map((project) => {
+          const criteriaIds = project.criteria_ids
+            .split(',')
+            .map((idStr) => Number(idStr))
+          return { ...project, criteria_ids: criteriaIds }
+        })
+        res.status(201).json(projects)
       }
     }
   )
